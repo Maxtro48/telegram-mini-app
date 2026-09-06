@@ -429,7 +429,13 @@ Spin
     let currentUserData = null;
     let userClaimsSet = new Set();
     let allTasksData = [];
+console.log("App Started");
 
+if(window.Telegram){
+console.log("Telegram Found");
+}else{
+console.log("Telegram Missing");
+}
     // ------------------------------------------------------------------
     // INITIALIZATION
     // ------------------------------------------------------------------
