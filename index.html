@@ -459,8 +459,9 @@ Spin
         await createOrFetchUser();
         initRealtimeListeners();
       }
-      document.getElementById('loadingOverlay').classList.add('hidden');
-    });
+     setTimeout(()=>{
+document.getElementById('loadingOverlay').classList.add('hidden');
+},3000);
 
     function initTelegram() {
       if (window.Telegram && window.Telegram.WebApp) {
@@ -468,6 +469,7 @@ Spin
         tg.ready();
         tg.expand();
         tgUser = tg.initDataUnsafe?.user || null;
+        console.log(tg.initDataUnsafe);
         startParam = tg.initDataUnsafe?.start_param || null;
       }
     }
