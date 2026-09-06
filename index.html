@@ -7,6 +7,9 @@
 
   <!-- Telegram WebApp SDK -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script>
+console.log("Telegram SDK Loaded", window.Telegram);
+</script>
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -442,22 +445,28 @@ console.log("Telegram Missing");
     window.addEventListener('DOMContentLoaded', async () => {
       initTelegram();
       initFirebase();
-      if (tgUser && tgUser.id) {
+      if (tgUser?.id) {
         const userRef = db.collection('users').doc(String(tgUser.id));
 
-await userRef.set({
-    id: String(tgUser.id),
-    name: tgUser.first_name || 'User',
-    photoURL: tgUser.photo_url || '',
-    coins: 0,
-    reffer: 0,
-    refferBy: startParam ? String(startParam) : null,
-    tasksCompleted: 0,
-    totalWithdrawals: 0,
+window.addEventListener('DOMContentLoaded', async () => {
 
-    // Daily Ads
-    adsWatchedToday: 0,
-    adsResetTime: null
+  initTelegram();
+  initFirebase();
+
+  if (!tgUser) {
+    tgUser = {
+      id:"demo123",
+      first_name:"Demo User",
+      photo_url:""
+    };
+  }
+
+  await createOrFetchUser();
+
+  initRealtimeListeners();
+
+  document.getElementById('loadingOverlay').classList.add('hidden');
+
 });
         initRealtimeListeners();
       } else {
