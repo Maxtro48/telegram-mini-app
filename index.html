@@ -461,7 +461,7 @@ await userRef.set({
 });
         initRealtimeListeners();
       } else {
-        showToast("Opened outside Telegram. Demo mode enabled.", "error");
+        alert("Telegram not detected");
         // Fallback user for standalone testing
         tgUser = { id: "demo_12345", first_name: "Demo User", photo_url: "" };
         await createOrFetchUser();
